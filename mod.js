@@ -125,3 +125,17 @@ treasureclassex.rows.forEach(tc=>{
 
 
 D2RMM.writeTsv(treasureclassexFilename, treasureclassex);
+
+const itemNamesFilename = 'local\\lng\\strings\\item-names.json';
+const itemNames = D2RMM.readJson(itemNamesFilename);
+
+itemNames.forEach((item) => {
+    if (item.enUS.includes("Soul Ore")) {
+        ["enUS", "zhTW", "deDE", "esES", "frFR", "itIT", "koKR", "plPL", "esMX", "jaJP", "ptBR", "ruRU", "zhCN"].forEach((lang) => {
+            item[lang] = 'ÿc9' + item[lang]
+        });
+    }
+});
+
+D2RMM.writeJson(itemNamesFilename, itemNames);
+
